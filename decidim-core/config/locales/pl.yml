@@ -9,7 +9,7 @@ pl:
         about: O
         email: Twój email
         name: Twoje imię
-        nickname: Twój krótki, niepowtarzalny identyfikator
+        nickname: Przezwisko
         password: Hasło
         password_confirmation: Potwierdź swoje hasło
         personal_url: Osobisty URL
@@ -36,7 +36,7 @@ pl:
         remember_me: Zapamiętaj mnie
     models:
       decidim/user:
-        one: Użytkownik
+        one: Brak użytkowników
         few: Użytkownicy
         many: Użytkownicy
         other: Użytkownicy
@@ -207,7 +207,7 @@ pl:
           title: Potwierdź swój email
     collapsible_list:
       hidden_elements_count:
-        one: i 1 więcej
+        one: i %{count} więcej
         few: i %{count} więcej
         many: i %{count} więcej
         other: i %{count} więcej
@@ -224,6 +224,7 @@ pl:
             comments_enabled: Komentarze włączone
             dummy_global_attribute_1: Atrybut dummy 1
             dummy_global_attribute_2: Atrybut Dummy 2
+            enable_pads_creation: Włącz tworzenie klocków
             resources_permissions_enabled: Włączono uprawnienia do zasobów
           step:
             comments_blocked: Komentarze zablokowane
@@ -576,6 +577,13 @@ pl:
       update:
         error: Wystąpił problem podczas aktualizacji grupy
         success: Grupa zaktualizowana pomyślnie
+    help:
+      main_topic:
+        default_page:
+          content: "<p>W %{organization} możesz uczestniczyć i decydować o różnych tematach, poprzez przestrzenie widoczne w górnym menu: Procesy, Złożenia, Inicjatywy, Konsultacje.</p> <p>W ramach każdego z nich znajdziesz różne opcje uczestnictwa: składanie propozycji - indywidualnie lub wspólnie z innymi osobami - uczestnictwo w debatach, nadawanie priorytetów projektom do realizacji, uczestnictwo w spotkaniach twarzą w twarz i inne działania.</p>\n"
+          title: Co mogę zrobić w %{organization}?
+        description: Przeczytaj więcej o %{organization}
+        title: Ogólna pomoc
     last_activities:
       activities:
         no_activities_warning: Brak aktywności
@@ -625,20 +633,29 @@ pl:
         create:
           error: Rozmowa nie rozpoczęła się. Spróbuj ponownie później
         index:
-          from: Od
-          last_message_html: Ostatnia wiadomość <strong>%{time} temu</strong>
           no_conversations: Nie masz jeszcze żadnych rozmów
-        show:
-          conversation_with_html: Rozmowa z <strong>%{name}</strong>
-          reply: Odpowiadać
+          title: Rozmowy
+        reply:
           send: Wysłać
+          title: Odpowiadać
+        show:
+          title: Konwersacja z %{usernames}
         start:
           send: Wysłać
           title: Zacząć rozmowę
         update:
           error: Wiadomość nie została wysłana. Spróbuj ponownie później
     metrics:
+      followers:
+        description: Liczba użytkowników następujących po organizacji
+        object: Obserwujący
+        title: Obserwujący
+      participants:
+        description: Liczba aktywnych użytkowników w organizacji
+        object: Uczestnicy
+        title: Uczestnicy
       users:
+        description: Liczba użytkowników w organizacji
         object: użytkowników
         title: Użytkownicy
     newsletter_mailer:
@@ -682,6 +699,10 @@ pl:
         pending: W oczekiwaniu
         rejected: Odrzucone
         verified: Zweryfikowane
+    pad_iframe:
+      disclaimer: Zawartość tego pada napisana jest przez zarejestrowanych użytkowników i wyrażana jest ich opinia. %{organization} nie może być pociągnięty do odpowiedzialności za jego zawartość.
+      explanation: Używaj tej podkładki do wspólnego robienia notatek podczas spotkania, więc łatwiej jest zapisać minutę później.
+      pad: Podkładka
     pages:
       home:
         extended:
@@ -729,6 +750,10 @@ pl:
         subheading: Przejdź przez strony pomocy %{name}
         title: Wsparcie
         topics: Tematy
+      participatory_space:
+        metrics:
+          headline: Udział w liczbach
+          link: Pokaż wszystkie statystyki
       terms_and_conditions:
         accept:
           error: Wystąpił błąd podczas akceptowania warunków.
@@ -756,13 +781,14 @@ pl:
       default_officialization_text_for_user_groups: Ta grupa użytkowników jest publicznie weryfikowana, jej nazwa została zweryfikowana, aby odpowiadała jej prawdziwej nazwie
       default_officialization_text_for_users: Ten uczestnik jest publicznie weryfikowany, jego / jego nazwisko lub rola została zweryfikowana, aby odpowiadała jego / jej prawdziwemu imieniu i roli
       show:
+        activity: Czynność
         badges: Odznaki
-        conversations: Rozmowy
         followers: Obserwujący
         following: Podąża
         groups: Grupy
         members: Członkowie
-        notifications: Powiadomienia
+        timeline: Oś czasu
+        view_full_profile: Zobacz pełny profil
       sidebar:
         badges:
           info: Odznaki zdobywa się, wykonując określoną czynność na platformie.
@@ -800,19 +826,29 @@ pl:
       prompt: Wybierz zakres
       scopes: Zakresy
     search:
-      filter:
-        all: Wszystko
-        component: Składnik
       results_found_for_term: '%{count} Wyniki wyszukiwania: "%{term}"'
       term_input_placeholder: Szukaj
     searches:
       filters:
-        search: Szukaj
+        back: Powrót do wyników
+        jump_to: 'Skocz do:'
+        state:
+          active: Aktywny
+          all: Wszystko
+          future: Przyszłość
+          past: Przeszłość
       filters_small_view:
         close_modal: Zamknij modalne
         filter: Filtr
         filter_by: Filtruj według
         unfold: Rozwijać się
+      results:
+        results:
+          one: "%{count} wynik"
+          few: "%{count} wyników"
+          many: "%{count} wyników"
+          other: "%{count} wyników"
+        view_all: Zobacz wszystko (%{count})
     shared:
       embed_modal:
         close_window: Zamknij okno
@@ -830,6 +866,8 @@ pl:
         report: Raport
         spam: Zawiera kliknięć, reklamy, oszustwa lub boty scenariusza.
         title: Zgłoś problem
+      floating_help:
+        help: Wsparcie
       follow_button:
         sign_in_before_follow: Zaloguj się przed wykonaniem tej czynności
       login_modal:
@@ -845,8 +883,11 @@ pl:
         share_link: Udostępnij link
       version_author:
         deleted: Usunięty użytkownik
+    user_activity:
+      index:
+        no_activities_warning: Ten użytkownik nie ma jeszcze żadnej aktywności.
     welcome_notification:
-      default_body: <p>Witaj {{name}}, dziękuję za dołączenie {{organization}} i witamy!</p><ul><li>Jeśli chcesz szybko zorientować się, co możesz tutaj zrobić, zapoznaj się z sekcją <a href="{{help_url}}">pomocy</a> .</li><li>Po przeczytaniu otrzymasz swoją pierwszą odznakę. Oto <a href="{{badges_url}}">list wszystkich odznak</a> które możesz zdobyć uczestnicząc w {{organization_name}}</li><li>Wreszcie dołącz do innych ludzi, podziel się z nimi doświadczeniem zaangażowania i uczestnictwa w {{organization}}. Przedstawcie propozycje, komentarze, debatę, pomyślcie, jak przyczynić się do wspólnego dobra, dostarczcie argumentów, aby przekonać, wysłuchać i przeczytać, aby byli przekonani, wyrażać swoje pomysły w konkretny i bezpośredni sposób, reagować z cierpliwością i decyzją, bronić swoich pomysłów i zachować otwarty umysł do współpracy i dołączania do pomysłów innych ludzi.</li></ul>
+      default_body: <p>Witaj {{name}}, dziękuję za dołączenie {{organization}} i witamy!</p><ul><li>Jeśli chcesz szybko zorientować się, co możesz tutaj zrobić, zapoznaj się z sekcją <a href="{{help_url}}">pomocy</a> .</li><li>Po przeczytaniu otrzymasz swoją pierwszą odznakę. Oto <a href="{{badges_url}}">list wszystkich odznak</a> które możesz zdobyć uczestnicząc w {{organization}}</li><li>Wreszcie dołącz do innych ludzi, podziel się z nimi doświadczeniem zaangażowania i uczestnictwa w {{organization}}. Przedstawcie propozycje, komentarze, debatę, pomyślcie, jak przyczynić się do wspólnego dobra, dostarczcie argumentów, aby przekonać, wysłuchać i przeczytać, aby byli przekonani, wyrażać swoje pomysły w konkretny i bezpośredni sposób, reagować z cierpliwością i decyzją, bronić swoich pomysłów i zachować otwarty umysł do współpracy i dołączania do pomysłów innych ludzi.</li></ul>
       default_subject: Dzięki za przyłączenie się do {{organization}}!
   devise:
     confirmations:

@@ -107,6 +107,7 @@ FactoryBot.define do
     about { Faker::Lorem.paragraph(2) }
     confirmation_sent_at { Time.current }
     accepted_tos_version { organization.tos_version }
+    email_on_notification { true }
 
     trait :confirmed do
       confirmed_at { Time.current }
@@ -172,6 +173,10 @@ FactoryBot.define do
 
     trait :rejected do
       rejected_at { Time.current }
+    end
+
+    trait :confirmed do
+      confirmed_at { Time.current }
     end
 
     after(:build) do |user_group, evaluator|
@@ -505,5 +510,17 @@ FactoryBot.define do
     category { create :category }
     participatory_space { create :participatory_process, organization: organization }
     related_object { create :component, participatory_space: participatory_space }
+  end
+
+  factory :amendment, class: "Decidim::Amendment" do
+    amender do
+      build(
+        :user,
+        organization: amendable.try(:organization) || build(:organization)
+      )
+    end
+    state { "evaluating" }
+    amendable { build(:dummy_resource) }
+    emendation { build(:dummy_resource) }
   end
 end

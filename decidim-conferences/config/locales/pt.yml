@@ -44,12 +44,13 @@ pt:
         other: Alto-falantes da conferência
       decidim/conference_user_role:
         one: Função de usuário da conferência
-        other: Papéis do usuário da conferência
+        other: Função de usuário da conferência
   decidim:
     admin:
       actions:
         confirm: confirme
         new_conference: Nova conferência
+        send_diplomas: Envie Diplomas
       conference_copies:
         new:
           copy: cópia de
@@ -153,6 +154,7 @@ pt:
           conference_admins: Usuários da conferência
           conference_invites: Convites
           conference_speakers: caixas de som
+          diploma: Diploma
           info: Info
           media_links: Links de Mídia
           moderations: Moderações
@@ -250,8 +252,10 @@ pt:
       conference:
         create: "%{user_name} criou a %{resource_name} conferência"
         publish: "%{user_name} publicou a %{resource_name} conferência"
+        send_conference_diplomas: "%{user_name} enviar diplomas para os %{resource_name} usuários da conferência"
         unpublish: "%{user_name} não publicada a %{resource_name} conferência"
         update: "%{user_name} atualizou a %{resource_name} conferência"
+        update_diploma: "%{user_name} atualizou a configuração do diploma %{resource_name} conference"
       conference_speaker:
         create: "%{user_name} criou o %{resource_name} alto-falante na conferência de %{space_name}"
         delete: "%{user_name} removeu o %{resource_name} alto-falante da conferência de %{space_name}"
@@ -272,6 +276,10 @@ pt:
           publish: "%{user_name} publicou o tipo de registro %{resource_name} na conferência %{space_name}"
           unpublish: "%{user_name} não publicado o tipo de registro %{resource_name} na conferência %{space_name}"
           update: "%{user_name} atualizou o tipo de registro %{resource_name} na conferência %{space_name}"
+      media_link:
+        create: "%{user_name} criou o link de mídia %{resource_name} na conferência de %{space_name}"
+        delete: "%{user_name} removeu o link de mídia %{resource_name} da conferência de %{space_name}"
+        update: "%{user_name} atualizou a %{resource_name} link de mídia no %{space_name} conferência"
     conference_program:
       index:
         title: Programa
@@ -325,11 +333,15 @@ pt:
               one: Houve 1 registro.
               other: Houve %{count} inscrições.
             slug_help: 'Os slugs de URL são usados ​​para gerar as URLs que apontam para esta conferência. Aceita apenas letras, números e traços e deve começar com uma letra. Exemplo: %{url}'
+        diplomas:
+          edit:
+            save: Salve 
+            title: Diploma
         invite_join_conference_mailer:
           invite:
             decline: Recusar convite '%{conference_title}'
             invited_you_to_join_a_conference: "%{invited_by} convidou você para participar de uma conferência em %{application}. Você pode recusar ou aceitá-lo através dos links abaixo."
-            join: Participe da conferência '%{conference_title}'
+            registration: Registro para '%{conference_title}'
         partners:
           index:
             title: Parceiros
@@ -338,14 +350,25 @@ pt:
             select_conference_meetings: Selecione as reuniões da conferência
           index:
             title: Tipos de registro
+        send_conference_diploma_mailer:
+          diploma:
+            diploma_html: Você encontrará o diploma para a conferência <a href="%{url}">%{title}</a> nos anexos.
+          diploma_user:
+            attendance_verified_by: Atendimento verificado por
+            certificate_of_attendance: Certificado de participação
+            certificate_of_attendance_description: Certifica-se que <strong>%{user}</strong> participou e participou nos <strong>%{title}</strong> realizados em <strong>%{location}</strong> em <strong>%{start} - %{end}</strong>
+        send_diploma:
+          error: Houve um problema ao enviar os diplomas da conferência.
+          success: Diplomas da Conferência enviados corretamente
       conference:
         registration_confirm:
           cancel: Cancelar
           confirm: confirme
         show:
+          free: Livre
           going: Indo
-          join: Junte-se à conferência
           no_slots_available: Não há slots disponíveis
+          registration: Cadastro
       conference_program:
         program_meeting:
           content: Conteúdo
@@ -389,11 +412,9 @@ pt:
         index:
           speakers: caixas de som
       conferences:
-        conferences_sidebar:
-          register: registo
         partners:
-          collaborators: Colaboradores
-          main_promotors: Principais promotores
+          collaborators: Parceiros
+          main_promotors: Organizadores
         show:
           login_as: Você está logado como %{name} <%{email}>
           make_conference_registration: 'Faça seu cadastro na conferência:'
@@ -412,6 +433,9 @@ pt:
         invite_join_conference_mailer:
           invite:
             subject: Convite para participar de uma conferência
+        send_conference_diploma_mailer:
+          diploma:
+            subject: O diploma da sua conferência foi enviado
       models:
         conference_invite:
           fields:
@@ -455,8 +479,8 @@ pt:
         conference_user_login:
           already_account: Você já tem uma conta na decidim?
           new_user: Novo usuário?
-          sign_in: Entre para se registrar nesta conferência
-          sign_up: Registre-se gratuitamente em decidim para registrar
+          sign_in: Entre para se inscrever na conferência
+          sign_up: Crie uma conta no decidim para se inscrever na conferência
       show:
         details: Detalhes
         introduction: Introdução

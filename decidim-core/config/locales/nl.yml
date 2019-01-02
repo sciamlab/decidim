@@ -9,7 +9,7 @@ nl:
         about: Over
         email: Je e-mailadres
         name: Uw naam
-        nickname: Jouw korte unieke ID
+        nickname: Bijnaam
         password: Wachtwoord
         password_confirmation: Bevestig uw wachtwoord
         personal_url: Persoonlijke URL
@@ -36,7 +36,7 @@ nl:
         remember_me: Blijf ingelogd
     models:
       decidim/user:
-        one: Gebruiker
+        one: Geen gebruikers
         other: gebruikers
       decidim/user_group:
         one: Gebruikersgroep
@@ -199,7 +199,7 @@ nl:
           title: bevestig je email
     collapsible_list:
       hidden_elements_count:
-        one: en nog 1
+        one: en %{count} meer
         other: en %{count} meer
       see_less: "(zie minder)"
       see_more: "(Bekijk meer)"
@@ -214,6 +214,7 @@ nl:
             comments_enabled: Reacties ingeschakeld
             dummy_global_attribute_1: Voorbeeld-kenmerk 1
             dummy_global_attribute_2: Voorbeeld-kenmerk 2
+            enable_pads_creation: Schakel het maken van pads in
             resources_permissions_enabled: Resources permissies ingeschakeld
           step:
             comments_blocked: Reacties geblokkeerd
@@ -566,6 +567,13 @@ nl:
       update:
         error: Er is een probleem opgetreden bij het bijwerken van de groep
         success: Groep succesvol geüpdatet
+    help:
+      main_topic:
+        default_page:
+          content: "<p>In %{organization} kunt u deelnemen aan en beslissen over verschillende onderwerpen, via de spaties die u ziet in het bovenste menu: Processen, Assemblies, Initiatieven, Consultaties.</p> <p>Binnen elk daarvan vindt u verschillende mogelijkheden om deel te nemen: voorstellen doen - individueel of met andere mensen -, deelnemen aan debatten, prioriteit geven aan te implementeren projecten, persoonlijke vergaderingen bijwonen en andere acties.</p>\n"
+          title: Wat kan ik doen in %{organization}?
+        description: Lees meer over %{organization}
+        title: Algemene hulp
     last_activities:
       activities:
         no_activities_warning: Geen activiteit
@@ -615,20 +623,29 @@ nl:
         create:
           error: Gesprek niet gestart. Probeer het later nogmaals
         index:
-          from: Van
-          last_message_html: Laatste bericht <strong>%{time} geleden</strong>
           no_conversations: Je hebt nog geen gesprekken
-        show:
-          conversation_with_html: Gesprek met <strong>%{name}</strong>
-          reply: Beantwoorden
+          title: conversaties
+        reply:
           send: Sturen
+          title: Beantwoorden
+        show:
+          title: Gesprek met %{usernames}
         start:
           send: Verzenden
           title: Een gesprek beginnen
         update:
           error: Bericht niet verzonden. Probeer het later nogmaals
     metrics:
+      followers:
+        description: Aantal gebruikers dat volgt in de organisatie
+        object: volgelingen
+        title: Volgers
+      participants:
+        description: Aantal actieve gebruikers in de organisatie
+        object: deelnemers
+        title: Deelnemers
       users:
+        description: Aantal gebruikers in de organisatie
         object: gebruikers
         title: gebruikers
     newsletter_mailer:
@@ -672,6 +689,10 @@ nl:
         pending: In behandeling
         rejected: Geweigerd
         verified: Geverifieerd
+    pad_iframe:
+      disclaimer: De inhoud van dit notitieblok is geschreven door geregistreerde gebruikers en geeft hun mening weer. %{organization} kan niet verantwoordelijk worden gehouden voor de inhoud ervan.
+      explanation: Gebruik deze pad om tijdens de vergadering gezamenlijk notities te maken, zodat u de minuut erna gemakkelijker kunt noteren.
+      pad: stootkussen
     pages:
       home:
         extended:
@@ -719,6 +740,10 @@ nl:
         subheading: Navigeer door de helppagina's van %{name}
         title: Helpen
         topics: Onderwerpen
+      participatory_space:
+        metrics:
+          headline: Deelname aan cijfers
+          link: Toon alle statistieken
       terms_and_conditions:
         accept:
           error: Er is een fout opgetreden bij het accepteren van de algemene voorwaarden.
@@ -746,13 +771,14 @@ nl:
       default_officialization_text_for_user_groups: Deze gebruikersgroep is openbaar geverifieerd, de naam is geverifieerd om overeen te komen met de echte naam
       default_officialization_text_for_users: Deze deelnemer wordt publiekelijk geverifieerd, zijn/haar naam of rol is geverifieerd om overeen te komen met zijn/haar echte naam en rol
       show:
+        activity: Activiteit
         badges: badges
-        conversations: conversaties
         followers: Volgers
         following: volgt
         groups: groepen
         members: leden
-        notifications: meldingen
+        timeline: Tijdlijn
+        view_full_profile: Bekijk volledig profiel
       sidebar:
         badges:
           info: Badges worden verdiend door specifieke activiteiten uit te voeren op het platform.
@@ -790,19 +816,27 @@ nl:
       prompt: Selecteer een scope
       scopes: scopes
     search:
-      filter:
-        all: Alle
-        component: bestanddeel
       results_found_for_term: '%{count} Resultaten voor de zoekopdracht: "%{term}"'
       term_input_placeholder: Zoeken
     searches:
       filters:
-        search: Zoeken
+        back: Terug naar resultaten
+        jump_to: 'Spring naar:'
+        state:
+          active: Actief
+          all: Allemaal
+          future: Toekomst
+          past: Verleden
       filters_small_view:
         close_modal: Modal sluiten
         filter: Filter
         filter_by: Filteren op
         unfold: Ontvouwen
+      results:
+        results:
+          one: "%{count} resultaat"
+          other: "%{count} resultaten"
+        view_all: Bekijk alles (%{count})
     shared:
       embed_modal:
         close_window: Sluit venster
@@ -820,6 +854,8 @@ nl:
         report: Rapporteren
         spam: Bevat clickbait, reclame, oplichting of script bots.
         title: Meld een probleem
+      floating_help:
+        help: Helpen
       follow_button:
         sign_in_before_follow: Log alstublieft aan voordat u deze actie uitvoert
       login_modal:
@@ -835,8 +871,11 @@ nl:
         share_link: Link delen
       version_author:
         deleted: Verwijderde gebruiker
+    user_activity:
+      index:
+        no_activities_warning: Deze gebruiker heeft nog geen activiteit gehad.
     welcome_notification:
-      default_body: <p>Hi {{name}}, bedankt voor het samenvoegen van {{organization}} en welkom!</p><ul><li>Als u snel een idee wilt krijgen van wat u hier kunt doen, bekijk dan het gedeelte <a href="{{help_url}}">Help</a> .</li><li>Zodra u het heeft gelezen, krijgt u uw eerste badge. Hier is een <a href="{{badges_url}}">lijst van alle badges</a> je kunt krijgen als je deelneemt {{organization_name}}</li><li>Last but not least, word lid van andere mensen, deel met hen de ervaring van betrokkenheid en deelname aan {{organization}}. Doe voorstellen, reageer, debatteer, denk na over hoe je een bijdrage kunt leveren aan het algemeen belang, lever argumenten aan om te overtuigen, luister en lees om overtuigd te worden, vertel je ideeën op een concrete en directe manier, reageer met geduld en besluit, verdedig je ideeën en houd een open geest om samen te werken en zich aan te sluiten bij de ideeën van andere mensen.</li></ul>
+      default_body: <p>Hi {{name}}, bedankt voor het samenvoegen van {{organization}} en welkom!</p><ul><li>Als u snel een idee wilt krijgen van wat u hier kunt doen, bekijk dan het gedeelte <a href="{{help_url}}">Help</a> .</li><li>Zodra u het heeft gelezen, krijgt u uw eerste badge. Hier is een <a href="{{badges_url}}">lijst van alle badges</a> je kunt krijgen als je deelneemt {{organization}}</li><li>Last but not least, word lid van andere mensen, deel met hen de ervaring van betrokkenheid en deelname aan {{organization}}. Doe voorstellen, reageer, debatteer, denk na over hoe je een bijdrage kunt leveren aan het algemeen belang, lever argumenten aan om te overtuigen, luister en lees om overtuigd te worden, vertel je ideeën op een concrete en directe manier, reageer met geduld en besluit, verdedig je ideeën en houd een open geest om samen te werken en zich aan te sluiten bij de ideeën van andere mensen.</li></ul>
       default_subject: Bedankt dat je lid bent geworden van {{organization}}!
   devise:
     confirmations:

@@ -12,6 +12,7 @@ module Decidim
     SOCIAL_HANDLERS = [:twitter, :facebook, :instagram, :youtube, :github].freeze
 
     has_many :static_pages, foreign_key: "decidim_organization_id", class_name: "Decidim::StaticPage", inverse_of: :organization, dependent: :destroy
+    has_many :static_page_topics, foreign_key: "organization_id", class_name: "Decidim::StaticPageTopic", inverse_of: :organization, dependent: :destroy
     has_many :scopes, -> { order(name: :asc) }, foreign_key: "decidim_organization_id", class_name: "Decidim::Scope", inverse_of: :organization
     has_many :scope_types, -> { order(name: :asc) }, foreign_key: "decidim_organization_id", class_name: "Decidim::ScopeType", inverse_of: :organization
     has_many :areas, -> { order(name: :asc) }, foreign_key: "decidim_organization_id", class_name: "Decidim::Area", inverse_of: :organization
@@ -83,6 +84,17 @@ module Decidim
 
     def sign_in_enabled?
       !users_registration_mode_disabled?
+    end
+
+    def open_data_file
+      @open_data_file ||= OpenDataUploader.new.tap do |uploader|
+        uploader.retrieve_from_store! open_data_file_path
+        uploader.cache! open_data_file_path
+      end
+    end
+
+    def open_data_file_path
+      "#{host}-open-data.zip"
     end
   end
 end

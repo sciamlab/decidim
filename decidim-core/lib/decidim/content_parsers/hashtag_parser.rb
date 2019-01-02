@@ -25,28 +25,30 @@ module Decidim
       # @return [String] the content with the hashtags replaced by global ids
       def rewrite
         content.gsub(HASHTAG_REGEX) do |match|
-          hashtags[match[1..-1]].to_global_id.to_s
+          hashtag(match[1..-1]).to_global_id.to_s + "/" + (extra_hashtags? ? "_" : "") + match[1..-1]
         end
       end
 
       def metadata
-        Metadata.new(content_hashtags.map { |content_hashtag| hashtags[content_hashtag] })
+        Metadata.new(content_hashtags.map { |content_hashtag| hashtag(content_hashtag) }.uniq)
       end
 
       private
 
+      def hashtag(name)
+        hashtags[name.downcase] ||= Decidim::Hashtag.create(organization: current_organization, name: name.downcase)
+      end
+
       def hashtags
-        @hashtags ||= Hash.new do |hash, name|
-          hash[name] = Decidim::Hashtag.create(organization: current_organization, name: name.downcase)
-        end .merge(Hash[
+        @hashtags ||= Hash[
           existing_hashtags.map do |hashtag|
             [hashtag.name, hashtag]
           end
-        ])
+        ]
       end
 
       def existing_hashtags
-        @existing_hashtags ||= Decidim::Hashtag.where(organization: current_organization, name: content_hashtags)
+        @existing_hashtags ||= Decidim::Hashtag.where(organization: current_organization, name: content_hashtags.map(&:downcase))
       end
 
       def content_hashtags
@@ -55,6 +57,12 @@ module Decidim
 
       def current_organization
         @current_organization ||= context[:current_organization]
+      end
+
+      def extra_hashtags?
+        return @extra_hashtags if defined?(@extra_hashtags)
+
+        @extra_hashtags = context[:extra_hashtags]
       end
     end
   end

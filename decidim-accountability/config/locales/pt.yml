@@ -209,6 +209,7 @@ pt:
           notification_title: O resultado <a href="%{resource_path}">%{resource_title}</a>, que inclui a proposta <a href="%{proposal_path}">%{proposal_title}</a>, está agora com %{progress}% de conclusão.
     metrics:
       results:
+        description: Número de resultados de responsabilidade gerados
         object: resultados
         title: Resultados
     participatory_processes:
@@ -217,8 +218,7 @@ pt:
           results: Resultados
     participatory_spaces:
       highlighted_results:
-        results: Resultados
-        see_all_results: Ver todos os resultados
+        see_all: Ver todos (%{count})
     resource_links:
       included_projects:
         result_project: Projetos incluídos neste resultado

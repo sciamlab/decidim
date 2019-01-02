@@ -22,6 +22,7 @@ module Decidim
       helper Decidim::ActionAuthorizationHelper
       helper Decidim::AttachmentsHelper
       helper Decidim::SanitizeHelper
+      helper Decidim::PadHelper
 
       helper_method :current_component,
                     :current_participatory_space,
@@ -37,12 +38,9 @@ module Decidim
         request.env["decidim.current_participatory_space"]
       end
 
-      deprecate current_feature: "current_feature is deprecated and will be removed from Decidim's next release"
-
       def current_component
         request.env["decidim.current_component"]
       end
-      alias current_feature current_component
 
       def current_manifest
         @current_manifest ||= current_component.manifest

@@ -86,6 +86,11 @@ hu:
         slug: URL slug
         title: Cím
         weight: Súly
+      static_page_topic:
+        description: Leírás
+        show_in_footer: Mutassa a láblécben
+        title: Cím
+        weight: Súly
     errors:
       models:
         oauth_application:
@@ -250,6 +255,11 @@ hu:
       exports:
         export_as: "%{name} mint %{export_format}"
         notice: Az exportálás folyamatban. Amint elkészült, egy emailt fogsz kapni róla.
+      help_sections:
+        error: Hiba történt a súgóelemek frissítésében
+        form:
+          save: Mentés
+        success: A súgóelemek sikeresen frissültek
       impersonatable_users:
         index:
           filter:
@@ -303,11 +313,12 @@ hu:
         areas: Területek
         configuration: Beállítások
         dashboard: Vezérlőpult
+        help_sections: Segítségrészek
         homepage: Homepage
         impersonations: Felhatalmazások
         newsletters: Hírlevelek
         oauth_applications: OAuth alkalmazások
-        officializations: Officializations
+        participants: résztvevők
         scope_types: Hatáskör típusok
         scopes: Hatáskörök
         settings: Beállítások
@@ -597,7 +608,7 @@ hu:
         dashboard: Vezérlőpult
         impersonatable_users: Felhatalmazható felhasználók
         impersonations: Felhatalmazások
-        officializations: Hivatalossá tételek
+        participants: résztvevők
         scope_types: Hatáskör típusok
         scopes: Hatáskörök
         static_pages: Oldalak

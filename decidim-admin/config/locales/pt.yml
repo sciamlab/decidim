@@ -86,6 +86,11 @@ pt:
         slug: Texto curto de URL
         title: Título
         weight: Peso
+      static_page_topic:
+        description: Descrição
+        show_in_footer: Mostrar no rodapé
+        title: Título
+        weight: Peso
     errors:
       models:
         oauth_application:
@@ -250,6 +255,11 @@ pt:
       exports:
         export_as: "%{name} como %{export_format}"
         notice: Sua exportação está atualmente em andamento. Você receberá um e-mail quando estiver completo.
+      help_sections:
+        error: Houve um erro ao atualizar as seções de ajuda
+        form:
+          save: Salve 
+        success: Seções de ajuda atualizadas com sucesso
       impersonatable_users:
         index:
           filter:
@@ -303,11 +313,12 @@ pt:
         areas: Áreas
         configuration: Configuração
         dashboard: Painel de controlo
+        help_sections: Seções de ajuda
         homepage: Pagina inicial
         impersonations: Imitações
         newsletters: Boletins informativos
         oauth_applications: Aplicações OAuth
-        officializations: Oficializações
+        participants: Participantes
         scope_types: Tipos de âmbito
         scopes: Âmbitos
         settings: Configurações
@@ -597,7 +608,7 @@ pt:
         dashboard: painel de controle
         impersonatable_users: Usuários impersonáveis
         impersonations: Personagens
-        officializations: Oficializações
+        participants: Participantes
         scope_types: Tipos de âmbito
         scopes: Âmbitos
         static_pages: Páginas

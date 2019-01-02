@@ -32,6 +32,7 @@ module Decidim
           end
           resource :proposal_vote, only: [:create, :destroy]
           resource :proposal_widget, only: :show, path: "embed"
+          resources :versions, only: [:show, :index]
         end
         resources :collaborative_drafts, except: [:destroy] do
           get :compare, on: :collection
@@ -177,26 +178,56 @@ module Decidim
       end
 
       initializer "decidim_proposals.register_metrics" do
-        Decidim.metrics_registry.register(
-          :proposals,
-          "Decidim::Proposals::Metrics::ProposalsMetricManage",
-          Decidim::MetricRegistry::HIGHLIGHTED,
-          2
-        )
+        Decidim.metrics_registry.register(:proposals) do |metric_registry|
+          metric_registry.manager_class = "Decidim::Proposals::Metrics::ProposalsMetricManage"
 
-        Decidim.metrics_registry.register(
-          :accepted_proposals,
-          "Decidim::Proposals::Metrics::AcceptedProposalsMetricManage",
-          Decidim::MetricRegistry::NOT_HIGHLIGHTED,
-          3
-        )
+          metric_registry.settings do |settings|
+            settings.attribute :highlighted, type: :boolean, default: true
+            settings.attribute :scopes, type: :array, default: %w(home participatory_process)
+            settings.attribute :weight, type: :integer, default: 2
+            settings.attribute :stat_block, type: :string, default: "medium"
+          end
+        end
 
-        Decidim.metrics_registry.register(
-          :votes,
-          "Decidim::Proposals::Metrics::VotesMetricManage",
-          Decidim::MetricRegistry::HIGHLIGHTED,
-          3
-        )
+        Decidim.metrics_registry.register(:accepted_proposals) do |metric_registry|
+          metric_registry.manager_class = "Decidim::Proposals::Metrics::AcceptedProposalsMetricManage"
+
+          metric_registry.settings do |settings|
+            settings.attribute :highlighted, type: :boolean, default: false
+            settings.attribute :scopes, type: :array, default: %w(home participatory_process)
+            settings.attribute :weight, type: :integer, default: 3
+            settings.attribute :stat_block, type: :string, default: "small"
+          end
+        end
+
+        Decidim.metrics_registry.register(:votes) do |metric_registry|
+          metric_registry.manager_class = "Decidim::Proposals::Metrics::VotesMetricManage"
+
+          metric_registry.settings do |settings|
+            settings.attribute :highlighted, type: :boolean, default: true
+            settings.attribute :scopes, type: :array, default: %w(home participatory_process)
+            settings.attribute :weight, type: :integer, default: 3
+            settings.attribute :stat_block, type: :string, default: "medium"
+          end
+        end
+
+        Decidim.metrics_registry.register(:endorsements) do |metric_registry|
+          metric_registry.manager_class = "Decidim::Proposals::Metrics::EndorsementsMetricManage"
+
+          metric_registry.settings do |settings|
+            settings.attribute :highlighted, type: :boolean, default: false
+            settings.attribute :scopes, type: :array, default: %w(participatory_process)
+            settings.attribute :weight, type: :integer, default: 4
+            settings.attribute :stat_block, type: :string, default: "medium"
+          end
+        end
+
+        Decidim.metrics_operation.register(:participants, :proposals) do |metric_operation|
+          metric_operation.manager_class = "Decidim::Proposals::Metrics::ProposalParticipantsMetricMeasure"
+        end
+        Decidim.metrics_operation.register(:followers, :proposals) do |metric_operation|
+          metric_operation.manager_class = "Decidim::Proposals::Metrics::ProposalFollowersMetricMeasure"
+        end
       end
     end
   end

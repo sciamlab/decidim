@@ -29,7 +29,7 @@ module Decidim
       helper_method :current_participatory_space
       helper_method :current_participatory_space_manifest
       helper_method :current_participatory_space_context
-      helper_method :help_section
+      helper_method :help_section, :help_id
     end
 
     private
@@ -63,11 +63,12 @@ module Decidim
 
     # Method for current user can visit the space (assembly or proces)
     def current_user_can_visit_space?
-      (current_participatory_space.try(:private_space?) &&
-       current_participatory_space.users.include?(current_user)) ||
+      current_user&.admin ||
+        (current_participatory_space.try(:private_space?) &&
+         current_participatory_space.users.include?(current_user)) ||
         !current_participatory_space.try(:private_space?) ||
         (current_participatory_space.try(:private_space?) &&
-        current_participatory_space.try(:is_transparent?))
+         current_participatory_space.try(:is_transparent?))
     end
 
     def check_current_user_can_visit_space
@@ -79,8 +80,12 @@ module Decidim
     def help_section
       @help_section ||= Decidim::ContextualHelpSection.find_content(
         current_organization,
-        current_participatory_space_manifest.name
+        help_id
       )
+    end
+
+    def help_id
+      @help_id ||= current_participatory_space_manifest.name
     end
   end
 end

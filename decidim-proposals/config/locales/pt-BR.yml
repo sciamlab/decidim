@@ -148,7 +148,7 @@ pt-BR:
           email_subject: Uma proposta que você está seguindo foi aceita
           notification_title: A proposta <a href="%{resource_path}">%{resource_title}</a> foi aceita.
         proposal_endorsed:
-          email_intro: "%{endorser_name} %{endorser_nickname}, quem você está seguindo, acabou de aprovar uma proposta que pode ser interessante para você, confira e contribua:"
+          email_intro: '%{endorser_name} %{endorser_nickname}, que você está seguindo, acabou de endossar a proposta "%{resource_title}" e achamos que pode ser interessante para você. Confira e contribua:'
           email_outro: Você recebeu esta notificação porque você está seguindo %{endorser_nickname}. Você pode parar de receber notificações após o link anterior.
           email_subject: "%{endorser_nickname} aprovou uma nova proposta"
           notification_title: O <a href="%{resource_path}">%{resource_title}</a> A proposta foi endossada por <a href="%{endorser_path}">%{endorser_name} %{endorser_nickname}</a>.
@@ -162,14 +162,14 @@ pt-BR:
           email_subject: Sua proposta "%{mentioned_proposal_title}" foi mencionada
           notification_title: Sua proposta "%{mentioned_proposal_title}" foi mencionada <a href="%{resource_path}">neste espaço</a> nos comentários.
         proposal_published:
-          email_intro: "%{author_name} %{author_nickname}, que você está seguindo, publicou uma nova proposta, confira e contribua:"
+          email_intro: '%{author_name} %{author_nickname}, que você está seguindo, publicou uma nova proposta chamada "%{resource_title}". Confira e contribua:'
           email_outro: Você recebeu esta notificação porque está seguindo %{author_nickname}. Você pode parar de receber notificações após o link anterior.
-          email_subject: Nova proposta de %{author_nickname}
+          email_subject: Nova proposta "%{resource_title}" por %{author_nickname}
           notification_title: A <a href="%{resource_path}">%{resource_title}</a> proposta foi publicada por <a href="%{author_path}">%{author_name} %{author_nickname}</a>.
         proposal_published_for_space:
           email_intro: A proposta "%{resource_title}" foi adicionada a "%{participatory_space_title}" que você está seguindo.
           email_outro: Você recebeu esta notificação porque está seguindo "%{participatory_space_title}". Você pode deixar de segui-lo no link anterior.
-          email_subject: Nova proposta adicionada a %{participatory_space_title}
+          email_subject: Nova proposta "%{resource_title}" adicionada a %{participatory_space_title}
           notification_title: A proposta <a href="%{resource_path}">%{resource_title}</a> foi adicionada a %{participatory_space_title}
         proposal_rejected:
           email_intro: 'A proposta "%{resource_title}" foi rejeitada. Você pode ler a resposta nesta página:'
@@ -223,12 +223,19 @@ pt-BR:
           unearned_own: Você não criou nenhuma proposta ainda.
     metrics:
       accepted_proposals:
+        description: Número de propostas aceitas pelos usuários
         object: propostas
         title: Propostas aceitas
+      endorsements:
+        description: Número de endossos gerados nas propostas
+        object: endossos
+        title: Endossos
       proposals:
+        description: Número de propostas geradas
         object: propostas
         title: Propostas
       votes:
+        description: Número de votos gerados em propostas de usuários
         object: votos
         title: Votos
     participatory_processes:
@@ -237,8 +244,7 @@ pt-BR:
           proposals: Propostas
     participatory_spaces:
       highlighted_proposals:
-        proposals: Propostas
-        see_all_proposals: Veja todas as propostas
+        see_all: Ver todos (%{count})
     proposals:
       actions:
         answer: Responda
@@ -409,8 +415,8 @@ pt-BR:
           title: Complete seu rascunho colaborativo
         count:
           drafts_count:
-            one: 1 rascunho colaborativo
-            other: "%{count} rascunhos colaborativos"
+            one: "%{count} rascunho colaborativo"
+            other: "%{count} rascunho colaborativo"
         create:
           error: Houve um problema ao criar esses rascunhos colaborativos
           success: Rascunho colaborativo criado com sucesso.
@@ -464,7 +470,7 @@ pt-BR:
           final_proposal: proposta final
           final_proposal_help_text: Este rascunho está terminado. Você pode ver a proposta final concluída
           hidden_authors_count:
-            one: e mais 1 pessoa
+            one: e mais %{count} pessoa
             other: e mais %{count} pessoas
           info-message: Este é um <strong>projecto colaborativo</strong> para uma proposta. Isso significa que você pode ajudar seus autores a moldar a proposta usando a seção de comentários abaixo ou melhorá-la diretamente solicitando acesso para editá-la. Depois que os autores lhe concederem acesso, você poderá fazer alterações neste rascunho.
           of_versions: "(de %{number})"
@@ -522,6 +528,12 @@ pt-BR:
             votes: Votos
       new:
         limit_reached: Você não pode criar novas propostas desde que você excedeu o limite.
+      participatory_text_proposal:
+        buttons:
+          comment: Comente
+          comments: Comentários
+          endorse: Endossar
+          endorsements: Endossos
       proposal_endorsements:
         create:
           error: Houve erros ao endossar a proposta.
@@ -547,7 +559,7 @@ pt-BR:
           title: Complete sua proposta
         count:
           proposals_count:
-            one: 1 proposta
+            one: "%{count} proposta"
             other: "%{count} propostas"
         edit:
           attachment_legend: "(Opcional) Adicione um anexo"
@@ -595,6 +607,11 @@ pt-BR:
           most_voted: Mais votados
           random: Aleatório
           recent: Recente
+        participatory_texts:
+          index:
+            document_index: Índice de documentos
+          view_index:
+            see_index: Veja o índice
         preview:
           modify: Modificar a proposta
           proposal_edit_before_minutes:
@@ -606,10 +623,11 @@ pt-BR:
           creation_date: 'Criação: %{date}'
           view_proposal: Ver proposta
         show:
+          back_to: De volta a
           edit_proposal: Editar proposta
           endorsements_list: Lista de avais
           hidden_endorsers_count:
-            one: e mais 1 pessoa
+            one: e mais %{count} pessoa
             other: e mais %{count} pessoas
           link_to_collaborative_draft_help_text: Esta proposta é o resultado de um rascunho colaborativo. Revise o histórico
           link_to_collaborative_draft_text: Veja o rascunho colaborativo
@@ -644,7 +662,7 @@ pt-BR:
           can_accumulate_supports_beyond_threshold:
             description: Cada proposta pode acumular mais de %{limit} suporta
           minimum_votes_per_user:
-            description: Você deve distribuir um mínimo de 3 votos entre diferentes propostas.
+            description: Você deve distribuir um mínimo de %{votes} votos entre diferentes propostas.
             given_enough_votes: Você deu suporte suficiente.
             supports_remaining: Você tem que votar %{remaining_votes} mais propostas para seus votos a serem levados em conta.
           proposal_limit:

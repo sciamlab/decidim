@@ -86,6 +86,11 @@ nl:
         slug: URL slug
         title: Titel
         weight: Gewicht
+      static_page_topic:
+        description: Omschrijving
+        show_in_footer: Laat het in het voettekst zien
+        title: Titel
+        weight: Gewicht
     errors:
       models:
         oauth_application:
@@ -250,6 +255,11 @@ nl:
       exports:
         export_as: "%{name} als %{export_format}"
         notice: Uw export is momenteel aan de gang. U ontvangt een email wanneer het klaar is.
+      help_sections:
+        error: Er is een fout opgetreden bij het bijwerken van de Help-gedeelten
+        form:
+          save: Opslaan
+        success: Help-secties met succes bijgewerkt
       impersonatable_users:
         index:
           filter:
@@ -303,11 +313,12 @@ nl:
         areas: Thema's
         configuration: Configuratie
         dashboard: Dashboard
+        help_sections: Help secties
         homepage: Startpagina
         impersonations: Zich voordoen als
         newsletters: Nieuwsbrieven
         oauth_applications: OAuth-toepassingen
-        officializations: Bevestigde gebruikers
+        participants: Deelnemers
         scope_types: Scope types
         scopes: Scopes
         settings: Instellingen
@@ -597,7 +608,7 @@ nl:
         dashboard: Dashboard
         impersonatable_users: Niet-personaliseerbare gebruikers
         impersonations: Nabootsingingen
-        officializations: Bevestigen gebruikers
+        participants: Deelnemers
         scope_types: Scope types
         scopes: Scopes
         static_pages: Pagina's

@@ -44,12 +44,13 @@ it:
         other: Oratori della conferenza
       decidim/conference_user_role:
         one: Ruolo dell'utente della conferenza
-        other: Ruoli utente della conferenza
+        other: Ruolo dell'utente della conferenza
   decidim:
     admin:
       actions:
         confirm: Confermare
         new_conference: Nuova conferenza
+        send_diplomas: Invia Diplomi
       conference_copies:
         new:
           copy: copia
@@ -153,6 +154,7 @@ it:
           conference_admins: Utenti della conferenza
           conference_invites: Inviti
           conference_speakers: Altoparlanti
+          diploma: Diploma
           info: Informazioni
           media_links: Link multimediali
           moderations: Moderations
@@ -250,8 +252,10 @@ it:
       conference:
         create: "%{user_name} creato la %{resource_name} conferenza"
         publish: "%{user_name} pubblicato la %{resource_name} conferenza"
+        send_conference_diplomas: "%{user_name} invia diplomi agli utenti della %{resource_name} conferenza"
         unpublish: "%{user_name} inedito la %{resource_name} conferenza"
         update: "%{user_name} aggiornato la %{resource_name} conferenza"
+        update_diploma: "%{user_name} aggiornato la conferenza di configurazione del diploma %{resource_name}"
       conference_speaker:
         create: "%{user_name} creato l'altoparlante %{resource_name} nella %{space_name} conferenza"
         delete: "%{user_name} rimosso l'altoparlante %{resource_name} dalla conferenza %{space_name}"
@@ -272,6 +276,10 @@ it:
           publish: "%{user_name} pubblicato il %{resource_name} tipo di registrazione nella %{space_name} conferenza"
           unpublish: "%{user_name} non pubblicato il %{resource_name} tipo di registrazione nella %{space_name} conferenza"
           update: "%{user_name} aggiornato il %{resource_name} tipo di registrazione nella %{space_name} conferenza"
+      media_link:
+        create: "%{user_name} creato il collegamento %{resource_name} media nella %{space_name} conferenza"
+        delete: "%{user_name} rimosso il collegamento %{resource_name} media dalla conferenza %{space_name}"
+        update: "%{user_name} aggiornato il %{resource_name} collegamento multimediale nella %{space_name} conferenza"
     conference_program:
       index:
         title: Programma
@@ -325,11 +333,15 @@ it:
               one: C'è stata 1 registrazione.
               other: Ci sono state %{count} registrazioni.
             slug_help: 'Gli slug URL vengono utilizzati per generare gli URL che puntano a questa conferenza. Accetta solo lettere, numeri e trattini e deve iniziare con una lettera. Esempio: %{url}'
+        diplomas:
+          edit:
+            save: Salvare
+            title: Diploma
         invite_join_conference_mailer:
           invite:
             decline: Rifiuta l'invito '%{conference_title}'
             invited_you_to_join_a_conference: "%{invited_by} ha invitato a partecipare a una conferenza %{application}. Puoi rifiutarlo o accettarlo tramite i link sottostanti."
-            join: Partecipa alla conferenza '%{conference_title}'
+            registration: Registrazione per '%{conference_title}'
         partners:
           index:
             title: Partner
@@ -338,14 +350,25 @@ it:
             select_conference_meetings: Seleziona le riunioni della conferenza
           index:
             title: Tipi di registrazione
+        send_conference_diploma_mailer:
+          diploma:
+            diploma_html: Troverai il diploma per la conferenza <a href="%{url}">%{title}</a> negli allegati.
+          diploma_user:
+            attendance_verified_by: Presenza verificata da
+            certificate_of_attendance: Certificato di partecipazione
+            certificate_of_attendance_description: Questo per certificare che <strong>%{user}</strong> ha partecipato e partecipato al <strong>%{title}</strong> tenuto al <strong>%{location}</strong> su <strong>%{start} - %{end}</strong>
+        send_diploma:
+          error: C'è stato un problema durante l'invio dei diplomi della conferenza.
+          success: Diplomi di conferenza inviati correttamente
       conference:
         registration_confirm:
           cancel: Annulla
           confirm: Confermare
         show:
+          free: Gratuito
           going: Andando
-          join: Partecipa alla conferenza
           no_slots_available: Non ci sono slot disponibili
+          registration: Registrazione
       conference_program:
         program_meeting:
           content: Soddisfare
@@ -389,13 +412,11 @@ it:
         index:
           speakers: Altoparlanti
       conferences:
-        conferences_sidebar:
-          register: Registrare
         partners:
-          collaborators: collaboratori
-          main_promotors: Principali promotori
+          collaborators: Partner
+          main_promotors: organizzatori
         show:
-          login_as: Stai eseguendo l'accesso come %{name} <%{email}>
+          login_as: Hai effettuato l'accesso come %{name} <%{email}>
           make_conference_registration: 'Fai la tua registrazione alla conferenza:'
           register: Registrare
       content_blocks:
@@ -412,6 +433,9 @@ it:
         invite_join_conference_mailer:
           invite:
             subject: Invito a partecipare a una conferenza
+        send_conference_diploma_mailer:
+          diploma:
+            subject: Il diploma della tua conferenza è stato inviato
       models:
         conference_invite:
           fields:
@@ -448,15 +472,15 @@ it:
       registration_types:
         index:
           choose_an_option: 'Scegli la tua opzione di registrazione:'
-          login_as: Stai eseguendo l'accesso come %{name} <%{email}>
+          login_as: Hai effettuato l'accesso come %{name} <%{email}>
           register: Registrare
           title: Tipi di registrazione
       shared:
         conference_user_login:
           already_account: Hai già un account in decidim?
           new_user: Nuovo utente?
-          sign_in: Accedi per registrarti a questa conferenza
-          sign_up: Registrati gratuitamente in decidim per registrarti
+          sign_in: Accedi per registrarti alla conferenza
+          sign_up: Crea un account in decidim per registrarti alla conferenza
       show:
         details: Dettagli
         introduction: introduzione

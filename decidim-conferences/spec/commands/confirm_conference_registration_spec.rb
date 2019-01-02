@@ -13,7 +13,7 @@ module Decidim::Conferences
     let!(:current_user) { create :conference_admin, conference: conference }
     let!(:registration_type) { create :registration_type, conference: conference }
     let(:user) { create :user, :confirmed, organization: organization }
-    let!(:conference_registration) { create :conference_registration, conference: conference, registration_type: registration_type, user: user }
+    let!(:conference_registration) { create :conference_registration, :unconfirmed, conference: conference, registration_type: registration_type, user: user }
 
     context "when everything is ok" do
       it "broadcasts ok" do
@@ -40,6 +40,19 @@ module Decidim::Conferences
         expect(attachment.read.length).to be_positive
         expect(attachment.mime_type).to eq("text/calendar")
         expect(attachment.filename).to match(/conference-calendar-info.ics/)
+      end
+
+      it "sends a notification to the user with the pending validation" do
+        expect(Decidim::EventsManager)
+          .to receive(:publish)
+          .with(
+            event: "decidim.events.conferences.conference_registration_confirmed",
+            event_class: Decidim::Conferences::ConferenceRegistrationNotificationEvent,
+            resource: conference,
+            affected_users: [user]
+          )
+
+        subject.call
       end
     end
   end

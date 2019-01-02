@@ -86,6 +86,11 @@ es-PY:
         slug: Texto corto de URL
         title: Título
         weight: Peso
+      static_page_topic:
+        description: Descripción
+        show_in_footer: Mostrar en el pie de página
+        title: Título
+        weight: Peso
     errors:
       models:
         oauth_application:
@@ -250,6 +255,11 @@ es-PY:
       exports:
         export_as: "%{name} como %{export_format}"
         notice: Su exportación está actualmente en curso. Recibirá un correo electrónico cuando esté completo.
+      help_sections:
+        error: Ha habido un error al actualizar las secciones de ayuda.
+        form:
+          save: Salvar
+        success: Secciones de ayuda actualizadas exitosamente
       impersonatable_users:
         index:
           filter:
@@ -303,11 +313,12 @@ es-PY:
         areas: Áreas
         configuration: Configuración
         dashboard: Panel de control
+        help_sections: Secciones de ayuda
         homepage: Página principal
         impersonations: Impersonaciones
         newsletters: Boletines
         oauth_applications: Aplicaciones OAuth
-        officializations: Oficializaciones
+        participants: Participantes
         scope_types: Tipos de ámbito
         scopes: Ámbitos
         settings: Configuración
@@ -597,7 +608,7 @@ es-PY:
         dashboard: Panel de control
         impersonatable_users: Usuarios impersonables
         impersonations: Suplantaciones
-        officializations: Oficializaciones
+        participants: Participantes
         scope_types: Tipos de ámbito
         scopes: Ámbitos
         static_pages: Páginas

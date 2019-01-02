@@ -209,6 +209,7 @@ fr:
           notification_title: Le résultat <a href="%{resource_path}">%{resource_title}</a>, qui inclut la proposition <a href="%{proposal_path}">%{proposal_title}</a>, est désormais achevé à %{progress}%.
     metrics:
       results:
+        description: Nombre de résultats de responsabilité générés
         object: résultats
         title: Résultats
     participatory_processes:
@@ -217,8 +218,7 @@ fr:
           results: Réalisations
     participatory_spaces:
       highlighted_results:
-        results: Réalisations
-        see_all_results: Voir toutes les réalisations
+        see_all: Tout voir (%{count})
     resource_links:
       included_projects:
         result_project: Projets inclus dans cette réalisation

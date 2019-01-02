@@ -213,6 +213,7 @@ pl:
           notification_title: Wynik <a href="%{resource_path}">%{resource_title}</a>, który obejmuje wniosek <a href="%{proposal_path}">%{proposal_title}</a>, jest teraz ukończony w %{progress}%.
     metrics:
       results:
+        description: Liczba wygenerowanych wyników rozliczalności
         object: wyniki
         title: Wyniki
     participatory_processes:
@@ -221,8 +222,7 @@ pl:
           results: Wyniki
     participatory_spaces:
       highlighted_results:
-        results: Wyniki
-        see_all_results: Zobacz wszystkie wyniki
+        see_all: Zobacz wszystko (%{count})
     resource_links:
       included_projects:
         result_project: Projekty uwzględnione w tym wyniku

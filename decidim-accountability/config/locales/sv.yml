@@ -209,6 +209,7 @@ sv:
           notification_title: Resultatet <a href="%{resource_path}">%{resource_title}</a>, som innehåller förslaget <a href="%{proposal_path}">%{proposal_title}</a>, är nu %{progress}% färdigt.
     metrics:
       results:
+        description: Antal resultat som genererats
         object: resultat
         title: Resultat
     participatory_processes:
@@ -217,8 +218,7 @@ sv:
           results: Resultat
     participatory_spaces:
       highlighted_results:
-        results: Resultat
-        see_all_results: Se alla resultat
+        see_all: Se alla (%{count})
     resource_links:
       included_projects:
         result_project: Projekt som ingår i detta resultat

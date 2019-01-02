@@ -209,6 +209,7 @@ ca:
           notification_title: El resultat <a href="%{resource_path}">%{resource_title}</a>, que inclou la proposta <a href="%{proposal_path}">%{proposal_title}</a>, ara és del %{progress}% complet.
     metrics:
       results:
+        description: Nombre de resultats de rendició de comptes generats
         object: resultats
         title: Resultats
     participatory_processes:
@@ -217,8 +218,7 @@ ca:
           results: Resultats
     participatory_spaces:
       highlighted_results:
-        results: Resultats
-        see_all_results: Veure tots els resultats
+        see_all: Veure tots (%{count})
     resource_links:
       included_projects:
         result_project: Projectes inclosos en aquest resultat

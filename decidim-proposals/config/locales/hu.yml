@@ -148,7 +148,7 @@ hu:
           email_subject: A követett javaslatot elfogadták
           notification_title: A <a href="%{resource_path}">%{resource_title}</a> című javaslatot elfogadták.
         proposal_endorsed:
-          email_intro: "%{endorser_name} %{endorser_nickname} (akit követsz) épp most hagyott jóvá egy olyan javaslatot, ami számodra is érdekes lehet. Nézz rá és tegyél hozzá:"
+          email_intro: '%{endorser_name} %{endorser_nickname}, akit követel, épp most fogadta el a "%{resource_title}" javaslatot, és úgy gondoljuk, hogy érdekes lehet. Nézze meg és járuljon hozzá:'
           email_outro: 'Ezt az értesítést azért kaptad, mert őt követed: "%{endorser_nickname}". Az értesítéseket a következő linkre kattintva kapcsolhatod ki.'
           email_subject: "%{endorser_nickname} támogatta az új javaslatot"
           notification_title: 'A(z) <a href="%{resource_path}">%{resource_title}</a> című javaslat jóváhagyva általa: <a href="%{endorser_path}">%{endorser_name} %{endorser_nickname}</a>.'
@@ -162,14 +162,14 @@ hu:
           email_subject: '"%{mentioned_proposal_title}" című javaslatod említésre került'
           notification_title: '"%{mentioned_proposal_title}" című javaslatodat említette valaki <a href="%{resource_path}">egy megjegyzésben</a>.'
         proposal_published:
-          email_intro: "%{author_name} %{author_nickname}, aki követ téged, új javaslatot tett közzé. Nézd meg és tegyél hozzá te is valamit:"
+          email_intro: '%{author_name} %{author_nickname}, aki követi, egy új javaslatot tett közzé a "%{resource_title}" -nek. Nézze meg és járuljon hozzá:'
           email_outro: 'Ezt az értesítést azért kaptad, mert őt követed: "%{author_nickname}". Az értesítéseket a következő linkre kattintva kapcsolhatod ki.'
-          email_subject: '%{author_nickname} új javaslata'
+          email_subject: Új javaslat "%{resource_title}" szerint %{author_nickname}
           notification_title: 'A(z) <a href="%{resource_path}">%{resource_title}</a> című javaslat közzétéve általa: <a href="%{author_path}">%{author_name} %{author_nickname}</a>.'
         proposal_published_for_space:
           email_intro: 'A(z) "%{resource_title}" című javaslatot hozzáadtuk ehhez: "%{participatory_space_title}" (követed).'
           email_outro: 'Ezt az értesítést azért kaptad, mert ezt követed: "%{participatory_space_title}". Leiratkozás az előző link segítségével.'
-          email_subject: 'Új javaslat hozzáadva ehhez: %{participatory_space_title}'
+          email_subject: Új javaslat "%{resource_title}" hozzáadva az %{participatory_space_title}
           notification_title: 'A(z) <a href="%{resource_path}">%{resource_title}</a> című javaslat hozzáadva ehhez: %{participatory_space_title}'
         proposal_rejected:
           email_intro: 'A(z) "%{resource_title}" című javaslat elutasítva. További részletek a következő oldalon:'
@@ -223,12 +223,19 @@ hu:
           unearned_own: Még nem hoztál létre javaslatokat.
     metrics:
       accepted_proposals:
+        description: A felhasználók által elfogadott pályázatok száma
         object: javaslatok
         title: Elfogadott javaslatok
+      endorsements:
+        description: A pályázatok során keletkezett támogatások száma
+        object: kiterjesztések
+        title: Elismerések
       proposals:
+        description: A létrehozott javaslatok száma
         object: javaslatok
         title: javaslatok
       votes:
+        description: A felhasználók által benyújtott szavazatok száma
         object: szavazat
         title: szavazatok
     participatory_processes:
@@ -237,8 +244,7 @@ hu:
           proposals: Javaslatok
     participatory_spaces:
       highlighted_proposals:
-        proposals: Javaslatok
-        see_all_proposals: Összes javaslat
+        see_all: Összes (%{count})
     proposals:
       actions:
         answer: Válasz
@@ -409,8 +415,8 @@ hu:
           title: Fejezd be a közös vázlatot
         count:
           drafts_count:
-            one: 1 közös vázlat
-            other: "%{count} közös vázlat"
+            one: "%{count} együttműködési tervezet"
+            other: "%{count} együttműködési tervezet"
         create:
           error: Hiba a közösen szerkesztett vázlatok létrehozásakor
           success: Közös vázlat létrehozása sikeres.
@@ -464,7 +470,7 @@ hu:
           final_proposal: végleges javaslat
           final_proposal_help_text: Ez a vázlat készen áll. Nézd meg a javaslat végső verzióját
           hidden_authors_count:
-            one: és még 1 ember
+            one: és még %{count} személy
             other: és még %{count} ember
           info-message: Ez egy javaslathoz készülő, úgynevezett <strong>közösen szerkesztett vázlat</strong>, ami azt jelenti, hogy a megjegyzések szekción keresztül, vagy közvetlen hozzáférés segítségével közösen alakíthatjátok a szöveget. Ha a szerző(k) hozzáférést biztosítanak neked, akkor módosíthatod is a vázlatot.
           of_versions: "(ennyiből: %{number})"
@@ -522,6 +528,12 @@ hu:
             votes: Szavazatok
       new:
         limit_reached: Nem hozhatsz létre új javaslatokat, mert túllépted a maximumot.
+      participatory_text_proposal:
+        buttons:
+          comment: Megjegyzés
+          comments: Hozzászólások
+          endorse: Támogassa
+          endorsements: Elismerések
       proposal_endorsements:
         create:
           error: Hiba történt a javaslat jóváhagyása során.
@@ -547,8 +559,8 @@ hu:
           title: Fejezd be a javaslatod
         count:
           proposals_count:
-            one: 1 javaslat
-            other: "%{count} javaslat"
+            one: "%{count} javaslat"
+            other: "%{count} javaslatot"
         edit:
           attachment_legend: "(Nem kötelező) Melléklet hozzáadása"
           back: Vissza
@@ -595,6 +607,11 @@ hu:
           most_voted: Legtöbb szavazattal
           random: Véletlenszerű
           recent: Legutóbbi
+        participatory_texts:
+          index:
+            document_index: Dokumentum index
+          view_index:
+            see_index: Lásd az indexet
         preview:
           modify: Javaslat módosítása
           proposal_edit_before_minutes:
@@ -606,10 +623,11 @@ hu:
           creation_date: 'Létrehozás: %{date}'
           view_proposal: Javaslat megtekintése
         show:
+          back_to: Vissza a
           edit_proposal: Javaslat szerkesztése
           endorsements_list: Jóváhagyások listája
           hidden_endorsers_count:
-            one: és még 1 ember
+            one: és még %{count} személy
             other: és még %{count} ember
           link_to_collaborative_draft_help_text: Ez a javaslat egy közös vázlat eredménye. Nézd át az előzményeket
           link_to_collaborative_draft_text: Közös vázlat megtekintése
@@ -644,7 +662,7 @@ hu:
           can_accumulate_supports_beyond_threshold:
             description: Az egyes javaslatok több mint %{limit} támogatást szerezhetnek
           minimum_votes_per_user:
-            description: A különböző javaslatok között legalább 3 szavazatot kell elosztanod.
+            description: A különböző javaslatok között legalább %{votes} szavazatot kell elosztania.
             given_enough_votes: Elég támogatást kapott a javaslatod.
             supports_remaining: Meg kell szavaznod %{remaining_votes} további javaslatot hogy a szavazataid figyelembe vételre kerüljenek.
           proposal_limit:

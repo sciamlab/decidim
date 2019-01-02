@@ -245,10 +245,10 @@ describe "Homepage", type: :system do
           it "shows the metrics block" do
             within "#metrics" do
               expect(page).to have_content("Participation in figures")
-              Decidim.metrics_registry.highlighted.each do |metric_registry|
+              Decidim.metrics_registry.filtered(highlight: true, scope: "home").each do |metric_registry|
                 expect(page).to have_css(%(##{metric_registry.metric_name}_chart), visible: false)
               end
-              Decidim.metrics_registry.not_highlighted.each do |metric_registry|
+              Decidim.metrics_registry.filtered(highlight: false, scope: "home").each do |metric_registry|
                 expect(page).to have_css(%(##{metric_registry.metric_name}_chart), visible: false)
               end
             end
@@ -327,6 +327,24 @@ describe "Homepage", type: :system do
 
       it "shows the banner's action subtitle" do
         expect(page).to have_i18n_content(organization.highlighted_content_banner_action_subtitle)
+      end
+    end
+
+    context "when downloading open data", download: true do
+      before do
+        Decidim::OpenDataJob.perform_now(organization)
+        switch_to_host(organization.host)
+        visit decidim.root_path
+      end
+
+      it "lets the users download open data files" do
+        click_link "Download Open Data files"
+        expect(File.basename(download_path)).to include("open-data.zip")
+        Zip::File.open(download_path) do |zipfile|
+          expect(zipfile.glob("*open-data-proposals.csv").length).to eq(1)
+          expect(zipfile.glob("*open-data-results.csv").length).to eq(1)
+          expect(zipfile.glob("*open-data-meetings.csv").length).to eq(1)
+        end
       end
     end
   end
