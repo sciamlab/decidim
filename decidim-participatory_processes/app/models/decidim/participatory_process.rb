@@ -55,7 +55,7 @@ module Decidim
     mount_uploader :hero_image, Decidim::HeroImageUploader
     mount_uploader :banner_image, Decidim::BannerImageUploader
 
-    scope :past, -> { where(arel_table[:end_date].lteq(Date.current)) }
+    scope :past, -> { where(arel_table[:end_date].lt(Date.current)) }
     scope :upcoming, -> { where(arel_table[:start_date].gt(Date.current)) }
     scope :active, -> { where(arel_table[:start_date].lteq(Date.current).and(arel_table[:end_date].gt(Date.current).or(arel_table[:end_date].eq(nil)))) }
 
@@ -101,8 +101,9 @@ module Decidim
 
     def can_participate?(user)
       return true unless private_space?
-      return true if private_space? && users.include?(user)
-      false
+      return false unless user
+
+      users.include?(user)
     end
 
     # Overrides the method from `Participable`.

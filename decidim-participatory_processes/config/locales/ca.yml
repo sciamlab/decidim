@@ -47,8 +47,8 @@ ca:
         name: Nom
         role: Rol
     models:
-      decidim/participatory_process_step_activated_event: Pas activat
-      decidim/participatory_process_step_changed_event: Pas canviat
+      decidim/participatory_process_step_activated_event: Fase activada
+      decidim/participatory_process_step_changed_event: Fase modificada
   activerecord:
     models:
       decidim/participatory_process:
@@ -72,7 +72,7 @@ ca:
         new_process: Nou procés
         new_process_group: Nou grup de processos
         new_process_step: Nova fase
-        new_process_user_role: Nou usuari del procés
+        new_process_user_role: Nova administradora del procés
         preview: Previsualitzar
         publish: Publicar
         resend_invitation: Tornar a enviar invitació
@@ -88,8 +88,8 @@ ca:
           components: Components
           info: Informació
           moderations: Moderacions
-          private_users: Usuaris privats
-          process_admins: Usuaris del procés
+          private_users: Participants privades
+          process_admins: Administradores del procés
           steps: Fases del procés
       models:
         participatory_process:
@@ -109,13 +109,13 @@ ca:
             end_date: Data de finalització
             start_date: Data d'inici
             title: Títol
-          name: Name
+          name: Fase del procés participatiu
         participatory_process_user_role:
           fields:
             email: Correu electrònic
             name: Nom
             role: Rol
-          name: Usuari de procés participatiu
+          name: Administradora de procés participatiu
           roles:
             admin: Administrador
             collaborator: Col·laborador
@@ -131,7 +131,7 @@ ca:
           title: Duplicar procés participatiu
       participatory_process_groups:
         destroy:
-          success: El grup de processos participatius s'ha suprimit correctament.
+          success: El grup de processos participatius s'ha eliminat correctament.
         edit:
           title: Editar grup de procés
           update: Actualitzar
@@ -139,8 +139,8 @@ ca:
           create: Crear
           title: Nou grup de processos
         update:
-          error: Hi ha hagut un error actualitzant aquest grup de processos participatius.
-          success: Grup de procés participatiu actualitzat correctament.
+          error: S'ha produït un error en actualitzar aquest grup de processos participatius.
+          success: Grup de processos participatius actualitzat correctament.
       participatory_process_publications:
         create:
           error: S'ha produït un error en publicar aquest procés participatiu.
@@ -150,12 +150,12 @@ ca:
           success: El procés participatiu s'ha despublicat correctament.
       participatory_process_step_activations:
         create:
-          error: S'ha produït un error en activar aquesta fase de procés participatiu.
-          success: La fase de procés participatiu s'ha activat correctament.
+          error: S'ha produït un error en activar aquesta fase del procés participatiu.
+          success: La fase del procés participatiu s'ha activat correctament.
       participatory_process_steps:
         create:
-          error: S'ha produït un error en crear una nova fase de procés participatiu.
-          success: La fase de procés participatiu s'ha creat correctament.
+          error: S'ha produït un error en crear una nova fase del procés participatiu.
+          success: La fase del procés participatiu s'ha creat correctament.
         default_title: Introducció
         destroy:
           error:
@@ -196,8 +196,6 @@ ca:
         create:
           error: S'ha produït un error en crear un nou procés participatiu.
           success: El procés participatiu s'ha creat correctament. Continua ara amb la configuració de les fases.
-        destroy:
-          success: El procés participatiu s'ha eliminat correctament.
         edit:
           update: Actualitzar
         form:
@@ -258,8 +256,8 @@ ca:
     help:
       participatory_spaces:
         participatory_processes:
-          contextual: "<p>A <strong>procés participatiu</strong> és una seqüència d'activitats de participació (per exemple, primer omplir una enquesta, a continuació, fer propostes, discutir-los en reunions cara a cara o virtuals, i, finalment, donar prioritat a ells) amb l'objectiu de definir i prendre una decisió sobre un tema específic.</p> <p>Alguns exemples de processos participatius són: un procés de selecció dels membres del comitè (on es presenten les candidatures, es debat i finalment es tria una candidatura), pressupostos participatius (on es fan propostes, es valoren econòmicament i es vota amb els diners disponibles), un procés de planificació estratègica, la redacció col·laborativa d'un reglament o norma, el disseny d'un espai urbà o la producció d'un pla de política pública.</p>\n"
-          page: "<p>A <strong>procés participatiu</strong> és una seqüència d'activitats de participació (per exemple, primer omplir una enquesta, a continuació, fer propostes, discutir-los en reunions cara a cara o virtuals, i, finalment, donar prioritat a ells) amb l'objectiu de definir i prendre una decisió sobre un tema específic.</p> <p>Alguns exemples de processos participatius són: un procés de selecció dels membres del comitè (on es presenten les candidatures, es debat i finalment es tria una candidatura), pressupostos participatius (on es fan propostes, es valoren econòmicament i es vota amb els diners disponibles), un procés de planificació estratègica, la redacció col·laborativa d'un reglament o norma, el disseny d'un espai urbà o la producció d'un pla de política pública.</p>\n"
+          contextual: "<p>Un procés participatiu és una seqüència d'activitats participatives (p.e. primer omplir una enquesta, després fer propostes, debatre-les en trobades presencials o virtuals, i finalment prioritzar-les) amb l'objectiu de definir i prendre una decisió sobre un tema específic.</p> <p>Exemples de processos participatius són: un procés d'elecció dels membres d'un comitè (on primer es presenten unes candidatures, després es debat i finalment es tria una candidatura), pressupostos participatius (on es fan propostes, es valoren econòmicament i es vota amb els diners disponibles), un procés de planificació estratègica, la redacció col·laborativa d'un reglament o norma, el disseny d'un espai urbà o la producció d'un pla de polítiques públiques.</p>\n"
+          page: "<p>Un procés participatiu és una seqüència d'activitats participatives (p.e. primer omplir una enquesta, després fer propostes, debatre-les en trobades presencials o virtuals, i finalment prioritzar-les) amb l'objectiu de definir i prendre una decisió sobre un tema específic.</p> <p>Exemples de processos participatius són: un procés d'elecció dels membres d'un comitè (on primer es presenten unes candidatures, després es debat i finalment es tria una candidatura), pressupostos participatius (on es fan propostes, es valoren econòmicament i es vota amb els diners disponibles), un procés de planificació estratègica, la redacció col·laborativa d'un reglament o norma, el disseny d'un espai urbà o la producció d'un pla de polítiques públiques.</p>\n"
           title: Què és un procés participatiu?
     menu:
       processes: Processos

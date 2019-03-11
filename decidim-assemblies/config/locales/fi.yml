@@ -80,10 +80,8 @@ fi:
         new_assembly: Uusi ryhmä
       assemblies:
         create:
-          error: Virhe luotaessa uutta ryhmää.
+          error: Uuden ryhmän luonti epäonnistui.
           success: Ryhmän luonti onnistui.
-        destroy:
-          success: Ryhmä poistettu onnistuneesti.
         edit:
           update: Päivitä
         form:
@@ -97,8 +95,8 @@ fi:
           create: Luo
           title: Uusi ryhmä
         update:
-          error: Ryhmän päivityksessä tapahtui virhe.
-          success: Ryhmä päivitettiin onnistuneesti.
+          error: Ryhmän päivitys epäonnistui.
+          success: Ryhmän päivitys onnistui.
       assemblies_copies:
         create:
           error: Virhe kopioitaessa ryhmää.
@@ -226,10 +224,10 @@ fi:
             slug_help: 'URL-tunnisteita käytetään tähän ryhmään osoittavien URL-osoitteiden luonnissa. Hyväksyy kirjaimet, numerot ja viivat. Ensimmäinen merkki on oltava kirjain. Esimerkiksi: %{url}'
         assembly_members:
           form:
-            existing_user: Olemassa oleva käyttäjä
-            non_user: Ei käyttäjä
+            existing_user: Olemassa oleva osallistuja
+            non_user: Ei osallistuja
             select_a_position: Valitse asema
-            select_user: Valitse käyttäjä
+            select_user: Valitse osallistuja
             user_type: Käyttäjätyyppi
           index:
             filter:
@@ -259,6 +257,16 @@ fi:
         city_council: Kaupunginvaltuusto
         others: Muut
         public: Julkinen
+      filter:
+        all: Kaikentyyppiset ryhmät
+        commission: Komitea
+        consultative_advisory: Konsultti/neuvonantaja
+        executive: Johtaja
+        government: Hallinto
+        help: 'Show:'
+        others: Muut
+        participatory: Osallistava
+        working_group: Työryhmä
       index:
         title: Ryhmät
       last_activity:
@@ -299,21 +307,21 @@ fi:
         social_networks: Sosiaalinen media
         target: Kuka osallistuu
       statistics:
-        answers_count: Vastaukset
-        assemblies_count: Ryhmiä
-        comments_count: Kommentteja
-        debates_count: Keskusteluja
-        endorsements_count: Suosituksia
+        answers_count: Vastausta
+        assemblies_count: Ryhmää
+        comments_count: Kommenttia
+        debates_count: Keskustelua
+        endorsements_count: Suositusta
         headline: Tilastot
-        meetings_count: Tapaamisia
-        orders_count: Ääniä
-        pages_count: Sivuja
-        projects_count: Suunnitelmia
-        proposals_count: Ehdotuksia
-        results_count: Tuloksia
-        surveys_count: Kyselyitä
-        users_count: Osallistujia
-        votes_count: Ääniä
+        meetings_count: Tapaamista
+        orders_count: Kannatusta
+        pages_count: Sivua
+        projects_count: Suunnitelmaa
+        proposals_count: Ehdotusta
+        results_count: Tulosta
+        surveys_count: Kyselyä
+        users_count: Osallistujaa
+        votes_count: Kannatusta
     assembly_members:
       assembly_member:
         designated_on: Nimetty

@@ -1,6 +1,11 @@
 sv:
   activemodel:
     attributes:
+      config:
+        available_methods: Tillgängliga metoder
+        offline: Off-line
+        offline_explanation: Instruktioner för offline verifiering
+        online: Uppkopplad
       id_document_information:
         document_number: Dokumentnummer (med bokstav)
         document_type: Typ av dokumentet
@@ -9,6 +14,8 @@ sv:
         document_type: Typ av ditt dokument
         user: Användare
         verification_attachment: Skannad kopia av ditt dokument
+      offline_confirmation:
+        email: Användar-e-post
       postal_letter_address:
         full_address: Fullständig adress
       postal_letter_confirmation:
@@ -20,6 +27,11 @@ sv:
     admin:
       menu:
         authorization_workflows: Verifieringar
+    admin_log:
+      organization:
+        update_id_documents_config: "%{user_name} uppdaterade konfiguration av identitetshandlingar"
+      user:
+        grant_id_documents_offline_verification: "%{user_name} verifierad %{resource_name} hjälp av en offline ID-dokument verifiering"
     authorization_handlers:
       admin:
         id_documents:
@@ -34,6 +46,9 @@ sv:
             - Du skickar brevet till deras adress med verifieringskoden.
             - Du markerar brevet som skickat.
             - När du markerar brevet som skickat kommer användaren att kunna införa koden och bli verifierad.
+      csv_census:
+        explanation: Få verifierad med hjälp av organisationens folkräkning
+        name: Organisationens folkräkning
       direct: Direkt
       help: Hjälp
       id_documents:
@@ -53,6 +68,7 @@ sv:
         first_login:
           actions:
             another_dummy_authorization_handler: Verifiera mot ett annat exempel på behörighetshanteraren
+            csv_census: Verifiera mot organisationens folkräkning
             dummy_authorization_handler: Verifiera mot exempel av behörighetshanterare
             dummy_authorization_workflow: Verifiera mot exemplet på arbetsflöde för auktorisering
             id_documents: Bli verifierad genom att ladda upp ditt identitetsdokument
@@ -64,12 +80,46 @@ sv:
           authorize_with: Verifiera med %{authorizer}
         skip_verification: Du kan hoppa över det här för tillfället och %{link}
         start_exploring: börja utforska
+      csv_census:
+        admin:
+          census:
+            create:
+              error: Det gick inte att importera folkräkning.
+              success: Har importerat %{count} objekt (%{errors} fel)
+            destroy_all:
+              success: Alla folkräkningsuppgifter har tagits bort
+          destroy:
+            confirm: Radera hela folkräkningen kan inte ångras. Är du säker på att du vill fortsätta?
+            title: Radera alla mätdata
+          index:
+            data: Det finns totalt %{count} poster laddade. Senaste uppladdningsdatumet var %{due_date}
+            empty: Det finns inga folkräkningstal. Använd formuläret nedan för att importera det med en CSV-fil.
+            title: Nuvarande folkräkning data
+          instructions:
+            body: För att göra detta måste du ange systemadministration och lägga till csv_census-godkännandena till organisationen
+            title: Du måste aktivera csv-folkräkningen för den här organisationen
+          new:
+            info: 'Måste vara en fil med CSV-format med en kolumn: e-post'
+            file: .csv-fil med e-postdata
+            submit: Ladda upp fil
+            title: Ladda upp en ny folkräkning
+        authorizations:
+          new:
+            error: Vi kunde inte verifiera ditt konto eller du är inte i organisationens folkräkning.
+            success: Ditt konto har verifierats.
       dummy_authorization:
         extra_explanation:
           one: Deltagande är begränsat till användare med postnummer %{postal_codes}.
           other: 'Deltagande är begränsat till användare med någon av följande postnummer: %{postal_codes}.'
       id_documents:
         admin:
+          config:
+            edit:
+              title: Konfiguration av identitetsdokument
+              update: Uppdatering
+            update:
+              error: Det uppstod ett fel vid uppdatering av konfigurationen.
+              success: Konfigurationen har uppdaterats
           confirmations:
             create:
               error: Verifieringen matchar inte. Försök igen eller avvisa verifieringen så att användaren kan ändra den
@@ -78,19 +128,36 @@ sv:
               introduce_user_data: Presentera data i bilden
               reject: Avvisa
               verify: Verifiera
+          offline_confirmations:
+            create:
+              error: Verifieringen matchar inte. Försök igen eller berätta för användaren att ändra den
+              success: Användaren har verifierats
+            new:
+              cancel: Annullera
+              introduce_user_data: Presentation av användar-e-post och dokumentdata
+              verify: Kontrollera
           pending_authorizations:
             index:
+              config: config
+              offline_verification: Offline verifiering
               title: Pågående verifieringar
               verification_number: 'Verifiering #%{n}'
           rejections:
             create:
               success: Verifieringen avvisades. Användaren kommer att uppmanas att ändra sina dokument
         authorizations:
+          choose:
+            choose_a_type: "Var god välj hur du vill verifieras:"
+            offline: Off-line
+            online: Uppkopplad
+            title: Verifiera dig själv med ditt identitetsdokument
           create:
             error: Det gick inte att ladda upp dokumentet
             success: Dokumentet har laddats upp
           edit:
             being_reviewed: Vi granskar dina dokument. Du kommer att verifieras inom kort
+            offline: Använd offline verifiering
+            online: Använd online verifiering
             rejection_clarity: Se till att informationen syns tydligt i den uppladdade bilden
             rejection_correctness: Se till att informationen som angivits är korrekt
             rejection_notice: Det uppstod ett problem med din verifiering. Var god försök igen
@@ -139,8 +206,13 @@ sv:
             error: Ett problem uppstod med din förfrågan
             success: Tack! Vi har skickat ett SMS till din telefon.
           edit:
+            confirm_destroy: Är du säker på att du vill återställa verifieringskoden?
+            destroy: Återställ verifieringskod
             send: Bekräfta
+            resend: Fick inte verifieringskoden?
             title: Presentera verifieringskoden du fick
+          destroy:
+            success: Verifieringskoden återställs väl. Ange ditt telefonnummer igen.
           new:
             send: Skicka mig ett SMS
             title: Begär din verifieringskod

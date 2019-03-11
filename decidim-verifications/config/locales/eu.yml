@@ -1,6 +1,11 @@
 eu:
   activemodel:
     attributes:
+      config:
+        available_methods: Metodo erabilgarriak
+        offline: Offline
+        offline_explanation: Lineaz kanpoko egiaztapenaren jarraibideak
+        online: Online
       id_document_information:
         document_number: Dokumentuaren zenbakia (letra batekin)
         document_type: Dokumentuaren mota
@@ -9,6 +14,8 @@ eu:
         document_type: Zure dokumentuaren mota
         user: Erabiltzaileak
         verification_attachment: Zure dokumentuaren eskaneatutako kopia
+      offline_confirmation:
+        email: Erabiltzailearen helbide elektronikoa
       postal_letter_address:
         full_address: Helbide osoa
       postal_letter_confirmation:
@@ -20,6 +27,11 @@ eu:
     admin:
       menu:
         authorization_workflows: egiaztapen
+    admin_log:
+      organization:
+        update_id_documents_config: "%{user_name} identitate dokumentuen egiaztapen konfigurazioa eguneratu du"
+      user:
+        grant_id_documents_offline_verification: "%{user_name} egiaztatua %{resource_name} Lineako identitate dokumentuen egiaztapena erabiliz"
     authorization_handlers:
       admin:
         id_documents:
@@ -34,6 +46,9 @@ eu:
             - Posta-helbidea bere helbidean bidaltzen du egiaztapen-kodearekin.
             - Bidalitako mezua markatzen du.
             - Behin bidalitako mezua markatzen duzunean, erabiltzaileak kodea sartu eta egiaztatu egingo du.
+      csv_census:
+        explanation: Egiaztatu erakundearen zentsua erabiliz
+        name: Erakundearen zentsua
       direct: Zuzeneko
       help: Laguntza
       id_documents:
@@ -53,6 +68,7 @@ eu:
         first_login:
           actions:
             another_dummy_authorization_handler: Egiaztatu baimenen kudeatzailearen beste adibide baten aurka
+            csv_census: Egiaztatu erakundearen zentsuaren aurka
             dummy_authorization_handler: Egiaztatu adibide-baimenaren kudeatzailearen aurka
             dummy_authorization_workflow: Egiaztatu baimenen laneko fluxuaren aurka
             id_documents: Egiaztatu zure identifikazio dokumentua kargatzen
@@ -64,12 +80,46 @@ eu:
           authorize_with: Egiaztatu %{authorizer} rekin
         skip_verification: Hau saltatu dezakezu oraingoz eta %{link}
         start_exploring: Hasi esploratzen
+      csv_census:
+        admin:
+          census:
+            create:
+              error: Errore bat gertatu da errolda inportatzean.
+              success: Arrakastaz inportatutako %{count} elementu (%{errors} errore)
+            destroy_all:
+              success: Erroldatze-datu guztiak ezabatu egin dira
+          destroy:
+            confirm: Ezabatu errolda guztia ezin da desegin. Ziur zaude jarraitu nahi duzula?
+            title: Zentsu-datu guztiak ezabatu
+          index:
+            data: Guztira %{count} karga daude guztira. Azken kargatze-data %{due_date}
+            empty: Ez dago zentsu-datuik. Erabili beheko formularioa CSV fitxategiaren bidez inportatzeko.
+            title: Uneko erroldako datuak
+          instructions:
+            body: Horretarako, sistemaren administrazioa sartu behar duzu eta gehitu csv_census baimenak erakundeari
+            title: Erakunde honetarako Csv errolda aktibatu behar duzu
+          new:
+            info: 'Fitxategi bat CSV formatuarekin izan behar da zutabe batekin: posta elektronikoa'
+            file: .csv fitxategia helbide elektronikoen datuekin
+            submit: Kargatu fitxategia
+            title: Kargatu zentsu berri bat
+        authorizations:
+          new:
+            error: Ezin izan dugu zure kontua egiaztatu edo ez duzu erakundearen zentsuan.
+            success: Zure kontua ondo egiaztatu da.
       dummy_authorization:
         extra_explanation:
           one: Partehartzea mugatua da %{postal_codes} kode postalarekin duten erabiltzaileentzat.
           other: 'Parte-hartzea honako posta-kode hauetakoren bat duten erabiltzaileentzat mugatuta dago: %{postal_codes}.'
       id_documents:
         admin:
+          config:
+            edit:
+              title: Nortasun agirien konfigurazioa
+              update: eguneratzearen
+            update:
+              error: Errore bat gertatu da konfigurazioa eguneratzean.
+              success: Konfigurazioa behar bezala eguneratu da
           confirmations:
             create:
               error: Egiaztapena ez dator bat. Berriro saiatu edo ezeztatu egiaztapena erabiltzaileak hura aldatzeko
@@ -78,19 +128,36 @@ eu:
               introduce_user_data: Idatzi irudian datuak
               reject: Ukatu
               verify: Ziurtatu
+          offline_confirmations:
+            create:
+              error: Egiaztapena ez dator bat. Saiatu berriro edo esan erabiltzaileak hura aldatzeko
+              success: Erabiltzaileak behar bezala egiaztatu du
+            new:
+              cancel: Utzi
+              introduce_user_data: Erabiltzailearen helbide elektronikoa eta dokumentuaren datuak sartu
+              verify: Ziurtatu
           pending_authorizations:
             index:
+              config: config
+              offline_verification: Lineaz kanpoko egiaztapena
               title: Zain dauden egiaztapenak
               verification_number: 'Egiaztapena # %{n}'
           rejections:
             create:
               success: Verification rejected. Erabiltzailea bere dokumentuak aldatzeko eskatuko zaio
         authorizations:
+          choose:
+            choose_a_type: "Hautatu nola egiaztatu nahi duzun:"
+            offline: Offline
+            online: Online
+            title: Egiaztatu zure identifikazio dokumentua
           create:
             error: Arazo bat izan da dokumentua kargatzean
             success: Dokumentua behar bezala kargatu da
           edit:
             being_reviewed: Zure dokumentuak berrikusten ari gara. Handik gutxira, egiaztatu egingo zara
+            offline: Erabili lineaz kanpoko egiaztapena
+            online: Erabili lineako egiaztapena
             rejection_clarity: Ziurtatu informazioa kargatutako irudian ikusgai dagoela
             rejection_correctness: Egiaztatu informazioa zuzena dela
             rejection_notice: Arazo bat izan da zure egiaztapenarekin. Saiatu berriro mesedez
@@ -139,8 +206,13 @@ eu:
             error: Arazo bat izan da eskaera zurekin
             success: Eskerrik asko! SMS bat bidali dizugu telefonoan.
           edit:
+            confirm_destroy: Ziur egiaztapen-kodea berrezarri nahi duzula?
+            destroy: Berrezarri egiaztapen-kodea
             send: Berretsi
+            resend: Ez al duzu egiaztapen-kodea jaso?
             title: Jasotako egiaztapen-kodea sartu
+          destroy:
+            success: Egiaztapen kodea behar bezala berrezarri da. Sartu berriro zure telefono zenbakia.
           new:
             send: Bidal iezadazu SMS bat
             title: Eskatu egiaztapen-kodea

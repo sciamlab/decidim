@@ -31,7 +31,7 @@ fi:
             name: Suunnitelma
         projects:
           create:
-            invalid: Suunnitelman luonnissa tapahtui virhe
+            invalid: Virhe luotaessa suunnitelmaa
             success: Suunnitelma lisätty onnistuneesti
           destroy:
             success: Suunnitelma poistettu onnistuneesti
@@ -46,11 +46,11 @@ fi:
             create: Luo
             title: Uusi suunnitelma
           update:
-            invalid: Tämän suunnitelman päivityksessä tapahtui virhe
+            invalid: Virhe päivitettäessä suunnitelmaa
             success: Suunnitelma päivitetty onnistuneesti
         proposals_imports:
           create:
-            invalid: Ehdotusten tuomisessa suunnitelmiin esiintyi ongelmia
+            invalid: Virhe tuotaessa ehdotuksia suunnitelmiksi
             success: "%{number} ehdotusta tuotu onnistuneesti suunnitelmiin"
           new:
             create: Tuo ehdotuksia suunnitelmiin
@@ -74,13 +74,13 @@ fi:
           title: Vahvista ääni
         budget_excess:
           close: Sulje
-          description: Tämä suunnitelma ylittää maksimibudjetin, minkä takia sitä ei voida lisätä. Jos haluat, voit tehdä "tilaa" budjettiin poistamalla suunnitelman, jonka olet jo valinnut lisättäväksi.
+          description: Tämä suunnitelma ylittää maksimibudjetin, minkä takia sitä ei voida lisätä. Jos haluat, voit tehdä "tilaa" budjettiin poistamalla suunnitelman, jonka olet jo valinnut.
           ok: OK
           title: Maksimibudjetti ylitetty
         budget_summary:
           are_you_sure: Haluatko varmasti peruuttaa äänesi?
           assigned: 'Varattu:'
-          cancel_order: poista äänesi ja aloitta alusta
+          cancel_order: poista äänesi ja aloita alusta
           checked_out:
             description: Olet jo äänestänyt tätä budjettia. Jos muutit mieltäsi, voit %{cancel_link}.
             title: Budjetin äänestys suoritettu
@@ -140,10 +140,10 @@ fi:
             votes_enabled: Äänestys on käytössä
     orders:
       checkout:
-        error: Äänesi käsittelyssä tapahtui virhe
+        error: Virhe käsiteltäessä ääntäsi
         success: Äänesi on hyväksytty onnistuneesti
       destroy:
-        error: Äänesi peruutuksen yhteydessä tapahtui virhe
+        error: Virhe peruutettaessa ääntäsi
         success: Äänesi on peruttu onnistuneesti
     resource_links:
       included_proposals:
